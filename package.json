@@ -32,6 +32,9 @@
   },
   "scripts": {
     "api:start": "node server.js",
+    "api:status": "mocha tasks/status.js",
+    "api:doctors": "mocha tasks/doctors.js",
+    "api:patients": "mocha tasks/patients.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
