@@ -14,7 +14,7 @@ const Home = props => {
 };
 
 Home.propTypes = {
-  history: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default Home;
