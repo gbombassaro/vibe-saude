@@ -4,11 +4,11 @@ import React from 'react';
 
 const styles = theme => ({
   tags: {
-    width: 'max-content',
+    backgroundColor: theme.palette.primary.main,
     borderRadius: 5,
     padding: theme.spacing(0.5, 1, 0.5, 1),
-    backgroundColor: theme.palette.primary.main,
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
+    width: 'max-content'
   }
 });
 
