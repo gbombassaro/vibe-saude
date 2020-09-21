@@ -65,6 +65,20 @@ describe('test load books', () => {
         map(res.body.items, (item) => print_book(item))
       })
   })
+  it('list books by patient', (done) => {
+    chai.request(api_path)
+      .post('/api/books/list')
+      .send({"patient": "Nancy Serud"})
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200)
+        expect(res.body).to.be.a('object')
+        expect(res.body.status).to.be.a('string')
+        expect(res.body.status).to.be.eq('OK')
+        expect(res.body.items).to.be.a('array')
+        done()
+        map(res.body.items, (item) => print_book(item))
+      })
+  })
   it('close a books', (done) => {
     chai.request(api_path)
       .post('/api/books/update')
