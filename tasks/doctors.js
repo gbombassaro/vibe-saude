@@ -21,7 +21,7 @@ describe('test load doctors', () => {
         map(res.body.items, (item) => console.log(`${item.name}`))
       })
   })
-  it('filter doctors by name', (done) => {
+  it('filter doctors by name: Dr. S', (done) => {
     chai.request(api_path)
       .post('/api/doctors/list')
       .send({"name": "Dr S"})
@@ -35,10 +35,10 @@ describe('test load doctors', () => {
         map(res.body.items, (item) => console.log(`${item.name}`))
       })
   })
-  it('filter doctors by skill', (done) => {
+  it('filter doctors by skill: Ophthalmologist', (done) => {
     chai.request(api_path)
       .post('/api/doctors/list')
-      .send({"skills": ["SIMBA"]})
+      .send({"skills": "Ophthalmologist"})
       .end((err, res) => {
         expect(res.status).to.be.eq(200)
         expect(res.body).to.be.a('object')
