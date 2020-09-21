@@ -3,7 +3,7 @@ const chaiHttp = require('chai-http')
 const {expect} = chai
 chai.use(chaiHttp)
 
-const api_path = `http://localhost:3000`
+const api_path = `http://localhost:3001`
 
 describe('test server.js', () => {
   it('connect api-mock', (done) => {
