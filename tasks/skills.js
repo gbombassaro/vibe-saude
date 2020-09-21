@@ -6,10 +6,10 @@ chai.use(chaiHttp)
 
 const api_path = `http://localhost:3000`
 
-describe('test load patients', () => {
-  it('list patients', (done) => {
+describe('test load skills', () => {
+  it('list skills', (done) => {
     chai.request(api_path)
-      .post('/api/patients/list')
+      .post('/api/skills/list')
       .send({'filters': []})
       .end((err, res) => {
         expect(res.status).to.be.eq(200)
@@ -18,7 +18,7 @@ describe('test load patients', () => {
         expect(res.body.status).to.be.eq('OK')
         expect(res.body.items).to.be.a('array')
         done()
-        map(res.body.items, (item) => console.log(`${item.name}`))
+        map(res.body.items, (item) => console.log(`${item}`))
       })
   })
 })
