@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React, {useEffect, useState} from 'react';
 import {map} from 'lodash';
 
-// import {useSelector, useDispatch} from 'react-redux';
 import DoctorCard from './DoctorCard';
 import {doctors_list} from '../actions/doctors'
 import {skills_list} from '../actions/skills'
