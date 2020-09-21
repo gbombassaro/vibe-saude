@@ -1,19 +1,18 @@
 import React from 'react';
-import axios from 'axios'
 import {map} from 'lodash';
 
 import BookCard from './BookCard';
 
-const api_root = `http://localhost:3001/api`
+import {books_list} from '../actions/books'
 
 const PageBooks = () => {
   
   const [items, set_items] = React.useState([]);
 
   React.useEffect(() => {
-    axios.post(`${api_root}/books/list`)
-      .then(payload => set_items(payload.data.items))
-      .catch(e => console.error(e))
+    
+    books_list().then(payload => set_items(payload))
+    
   }, [])
 
   return (
