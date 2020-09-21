@@ -24,19 +24,27 @@ router.post('/doctors/list', (req, res) => {
   let {name, skills} = req.body
   let list = store.doctors
   let filtered_list = []
+  let is_filtered = false
   if(name && name !== "") {
     map(list, (item) => {
       let item_lower = item.name ? item.name.toLowerCase() : ``
       if(item_lower.indexOf(name.toLowerCase()) !== -1)
         filtered_list.push(item)
     })
-  } else if(skills && skills !== "") {
+    list = filtered_list
+    is_filtered = true
+  }
+  if(skills && skills !== "") {
+    filtered_list = []
     map(list, (item) => {
       let has_skills = includes(item.skills, skills)
       if(has_skills)
         filtered_list.push(item)
     })
-  } else {
+    list = filtered_list
+    is_filtered = true
+  }
+  if(!is_filtered) {
     filtered_list = list
   }
   let object = {
