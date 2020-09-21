@@ -1,19 +1,39 @@
-import {Button} from '@material-ui/core';
+import {TextField, Grid} from '@material-ui/core';
+import {withStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {useSelector} from 'react-redux';
 
-const Home = props => {
+// import {useSelector} from 'react-redux';
+import DoctorCard from './DoctorCard';
 
-  const testando = useSelector(state => state);
-  console.log(testando);
+const styles = () => ({
+  input: {
+    width: '100%'
+  }
+});
 
-  const handleClick = () => {
-    props.history.push('page1');
+const Home = ({classes}) => {
+
+  // const testando = useSelector(state => state);
+  const mock = {
+    id: '1',
+    name: 'Floriano Peixoto',
+    skills: ['testando', 'testando 2']
   };
 
   return (
-    <Button color='primary' onClick={handleClick}>Ir para página 1</Button>
+    <React.Fragment>
+      <Grid container spacing={2} justify='center'>
+        <Grid item xs={12} md={6}>
+          <TextField className={classes.input} label='Pesquisar' variant='outlined' />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} justify='center'>
+        <Grid item xs={12} md={6}>
+          <DoctorCard content={mock} />
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
 
@@ -21,4 +41,4 @@ Home.propTypes = {
   history: PropTypes.object,
 };
 
-export default Home;
+export default withStyles(styles)(Home);
