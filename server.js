@@ -43,6 +43,15 @@ router.post('/books/list', (req, res) => {
     list = filtered_list
     is_filtered = true
   }
+  if(patient && patient !== "") {
+    map(list, (item) => {
+      let item_lower = item.patient ? item.patient.toLowerCase() : ``
+      if(item_lower.indexOf(patient.toLowerCase()) !== -1)
+        filtered_list.push(item)
+    })
+    list = filtered_list
+    is_filtered = true
+  }
   let object = {
     status: 'OK', 
     items: orderListByName(list)
