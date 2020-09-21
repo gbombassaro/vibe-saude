@@ -6,10 +6,10 @@ const port = 3001;
 const server = require("http").createServer(app);
 const router = express.Router()
 
-const {includes, map} = require("lodash")
-const {doctors, patients, skills} = require("./data")
+const {findIndex, includes, map, remove} = require("lodash")
+const {books, doctors, patients, skills} = require("./data")
 
-const store = {doctors, patients, skills}
+const store = {books, doctors, patients, skills}
 
 const orderListByName = (list) => {
   return list.sort((a, b) => 
@@ -20,6 +20,54 @@ const orderList = (list) => {
     a.localeCompare(b))
 }
 
+router.post('/books/add', (req, res) => {
+  let book = req.body
+  store.books.push(book)
+  let object = {
+    status: 'OK', 
+    items: orderListByName(store.books)
+  }
+  res.status(200).json(object)
+})
+router.post('/books/list', (req, res) => {
+  let {name, patient} = req.body
+  let list = store.books
+  let filtered_list = []
+  let is_filtered = false
+  if(name && name !== "") {
+    map(list, (item) => {
+      let item_lower = item.name ? item.name.toLowerCase() : ``
+      if(item_lower.indexOf(name.toLowerCase()) !== -1)
+        filtered_list.push(item)
+    })
+    list = filtered_list
+    is_filtered = true
+  }
+  let object = {
+    status: 'OK', 
+    items: orderListByName(list)
+  }
+  res.status(200).json(object)
+})
+router.post('/books/remove', (req, res) => {
+  let book = req.body
+  remove(store.books, (book))
+  let object = {
+    status: 'OK', 
+    items: orderListByName(store.books)
+  }
+  res.status(200).json(object)
+})
+router.post('/books/update', (req, res) => {
+  let book = req.body
+  let index = findIndex(store.books, {name: book.name, date: book.date})
+  store.books.splice(index, 1, book);
+  let object = {
+    status: 'OK', 
+    items: orderListByName(store.books)
+  }
+  res.status(200).json(object)
+})
 router.post('/doctors/list', (req, res) => {
   let {name, skills} = req.body
   let list = store.doctors

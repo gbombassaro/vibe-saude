@@ -34,6 +34,7 @@
   "scripts": {
     "api:start": "node server.js",
     "api:status": "mocha tasks/status.js",
+    "api:books": "mocha tasks/books.js",
     "api:doctors": "mocha tasks/doctors.js",
     "api:patients": "mocha tasks/patients.js",
     "api:skills": "mocha tasks/skills.js",

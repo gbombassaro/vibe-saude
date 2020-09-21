@@ -1,0 +1,96 @@
+const {map} = require('lodash')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const {expect} = chai
+chai.use(chaiHttp)
+
+const api_path = `http://localhost:3001`
+
+const print_book = (item) => console.log(`${item.date} ${item.status} ${item.name}`)
+
+describe('test load books', () => {
+  it('list books', (done) => {
+    chai.request(api_path)
+      .post('/api/books/list')
+      .send({})
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200)
+        expect(res.body).to.be.a('object')
+        expect(res.body.status).to.be.a('string')
+        expect(res.body.status).to.be.eq('OK')
+        expect(res.body.items).to.be.a('array')
+        done()
+        map(res.body.items, (item) => print_book(item))
+      })
+  })
+  it('add new books', (done) => {
+    chai.request(api_path)
+      .post('/api/books/add')
+      .send({"name": "Dr Sandra Winhoven", "date": "2020-09-21T10:00:00.000Z", "patient": "", "status": "Open"})
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200)
+        expect(res.body).to.be.a('object')
+        expect(res.body.status).to.be.a('string')
+        expect(res.body.status).to.be.eq('OK')
+        expect(res.body.items).to.be.a('array')
+        done()
+        map(res.body.items, (item) => print_book(item))
+      })
+  })
+  it('list books by doctor', (done) => {
+    chai.request(api_path)
+      .post('/api/books/list')
+      .send({"name": "Dr Sandra Winhoven"})
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200)
+        expect(res.body).to.be.a('object')
+        expect(res.body.status).to.be.a('string')
+        expect(res.body.status).to.be.eq('OK')
+        expect(res.body.items).to.be.a('array')
+        done()
+        map(res.body.items, (item) => print_book(item))
+      })
+  })
+  it('update book', (done) => {
+    chai.request(api_path)
+      .post('/api/books/update')
+      .send({"name": "Dr Sandra Winhoven", "date": "2020-09-21T10:00:00.000Z", "patient": "Nancy Serud", "status": "Booked"})
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200)
+        expect(res.body).to.be.a('object')
+        expect(res.body.status).to.be.a('string')
+        expect(res.body.status).to.be.eq('OK')
+        expect(res.body.items).to.be.a('array')
+        done()
+        map(res.body.items, (item) => print_book(item))
+      })
+  })
+  it('close a books', (done) => {
+    chai.request(api_path)
+      .post('/api/books/update')
+      .send({"name": "Dr Sandra Winhoven", "date": "2020-09-21T10:00:00.000Z", "patient": "Nancy Serud", "status": "Closed"})
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200)
+        expect(res.body).to.be.a('object')
+        expect(res.body.status).to.be.a('string')
+        expect(res.body.status).to.be.eq('OK')
+        expect(res.body.items).to.be.a('array')
+        done()
+        map(res.body.items, (item) => print_book(item))
+      })
+  })
+  it('remove a books', (done) => {
+    chai.request(api_path)
+      .post('/api/books/remove')
+      .send({"name": "Dr Sandra Winhoven", "date": "2020-09-21T10:00:00.000Z"})
+      .end((err, res) => {
+        expect(res.status).to.be.eq(200)
+        expect(res.body).to.be.a('object')
+        expect(res.body.status).to.be.a('string')
+        expect(res.body.status).to.be.eq('OK')
+        expect(res.body.items).to.be.a('array')
+        done()
+        map(res.body.items, (item) => print_book(item))
+      })
+  })
+})

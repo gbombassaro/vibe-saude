@@ -8,26 +8,18 @@ const dataImages = {
     `https://res.cloudinary.com/meet2move/image/upload/c_fill,h_50,w_50/v1567542048/users/avatar/b86ad29f-e998-4ef5-84d5-1cc99d9eabf7`
   ]
 }
+const returnUserImage = (idx) => dataImages.items[idx]
 
-const returnUserImage = (idx) => {
-  return `${dataImages.items[idx]}`
-}
-
-const patients = [{
-  name: `Ted R.`,
-  img: returnUserImage(1)
+const books = [{
+  date: `2020-09-21T07:30:00.000Z`,
+  name: `Dr Neil Mortimer`,
+  patient: `Ted R.`,
+  status: `Booked`
 },{
-  name: `Nancy W.`,
-  img: returnUserImage(2)
-},{
-  name: `Paula C.`,
-  img: returnUserImage(3)
-},{
-  name: `Serud A`,
-  img: returnUserImage(4)
-},{
-  name: `Karol M`,
-  img: returnUserImage(5)
+  date: `2020-09-21T08:00:00.000Z`,
+  name: `Dr Neil Mortimer`,
+  patient: ``,
+  status: `Open`
 }]
 
 const doctors = [{
@@ -52,9 +44,27 @@ const doctors = [{
   skills: ["Gastroenterologist"]
 }]
 
+const patients = [{
+  name: `Ted R.`,
+  img: returnUserImage(1)
+},{
+  name: `Nancy W.`,
+  img: returnUserImage(2)
+},{
+  name: `Paula C.`,
+  img: returnUserImage(3)
+},{
+  name: `Serud A`,
+  img: returnUserImage(4)
+},{
+  name: `Karol M`,
+  img: returnUserImage(5)
+}]
+
 const skills = ["Cardiologist", "Dermatologist", "Endocrinologist", "Gastroenterologist", "Ophthalmologist", "Pediatrician", "Plastic surgeon"]
 
 module.exports = {
+  books,
   doctors,
   patients,
   skills
