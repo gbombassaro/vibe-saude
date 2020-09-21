@@ -41,20 +41,17 @@ const PageCreate = () => {
   return (
     <div style={{width: '100%', height: 100}}>
       
-      <pre>Consultas agendadas {items.length}</pre>
-      
       <pre>Doctors {doctors.length}</pre>
       <pre>Patients {patients.length}</pre>
       <pre>Skills {skills.length}</pre>
-      
-      {map(items, (item, key) => 
-        <BookCard key={key} content={item} onClick={() => console.log(`click ${key}`)} />)}
 
       <Select onChange={selectDoctor} label="Doctor">
         <MenuItem value={selected_doctor}>Select Doctor</MenuItem>
         {map(doctors, (item, key) => 
           <MenuItem key={key} value={item.name}>{item.name}</MenuItem>)}
       </Select>
+
+      <br /><br />
 
       <Select onChange={selectPatient} label="Patient">
         <MenuItem value={selected_patient}>Select Patient</MenuItem>
