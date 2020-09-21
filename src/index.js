@@ -7,11 +7,9 @@ import globalState from './globalState';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={globalState}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={globalState}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 
