@@ -7,12 +7,13 @@ import React from 'react';
 import Profile from './Profile';
 import Tag from './Tag';
 
-const styles = () => ({
+const styles = theme => ({
   card: {
     cursor: 'pointer',
+    marginBottom: theme.spacing(1),
     '&:hover': {
       borderColor: 'rgba(0, 0, 0, 0.87)'
-    }
+    },
   },
   row: {
     display: 'flex',
@@ -20,10 +21,10 @@ const styles = () => ({
   }
 });
 
-const DoctorCard = ({classes, content}) => {
+const DoctorCard = ({classes, content, onClick}) => {
   const {name, skills} = content;
   return (
-    <Card variant='outlined' className={classes.card}>
+    <Card variant='outlined' className={classes.card} onClick={onClick}>
       <Box p={2} className={classes.row}>
         <Profile marginSize={4} />
         <Box>
@@ -40,7 +41,7 @@ const DoctorCard = ({classes, content}) => {
 DoctorCard.propTypes = {
   classes: PropTypes.object,
   content: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    image: PropTypes.string,
     name: PropTypes.string.isRequired,
     skills: PropTypes.arrayOf(PropTypes.string),
   }).isRequired

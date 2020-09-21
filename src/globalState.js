@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
 
-import doctorMock from './mocks/doctor';
+import doctorMock from './reducers/doctor';
 
 export default configureStore({
   reducer: {
-    user: doctorMock,
+    doctors: doctorMock,
   }
 });
