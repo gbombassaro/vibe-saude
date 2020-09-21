@@ -32,23 +32,30 @@ const patients = [{
 
 const doctors = [{
   name: `Dr Neil Mortimer`,
-  img: returnUserImage(1)
+  img: returnUserImage(1),
+  skills: ["Dermatologist", "Endocrinologist", "Ophtalmologist"]
 },{
   name: `Dr Paul Salmon`,
-  img: returnUserImage(2)
+  img: returnUserImage(2),
+  skills: ["Ophthalmologist", "Cardiologist"]
 },{
   name: `Dr Peggy Chen`,
-  img: returnUserImage(3)
+  img: returnUserImage(3),
+  skills: ["Pediatrician", "Dermatologist"]
 },{
   name: `Dr Sandra Winhoven`,
-  img: returnUserImage(4)
+  img: returnUserImage(4),
+  skills: ["Gastroenterologist", "Plastic surgeon"]
 },{
   name: `Dr Susan Simpkin`,
-  img: returnUserImage(5)
+  img: returnUserImage(5),
+  skills: ["Gastroenterologist"]
 }]
+
+const skills = ["Cardiologist", "Dermatologist", "Endocrinologist", "Gastroenterologist", "Ophthalmologist", "Pediatrician", "Plastic surgeon"]
 
 module.exports = {
   doctors,
   patients,
-  returnUserImage
+  skills
 }
