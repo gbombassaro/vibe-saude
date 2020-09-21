@@ -17,8 +17,9 @@ const styles = () => ({
 const Home = ({classes}) => {
 
   const [data, setData] = useState({});
-  const [skills, setSkills] = useState({});
-  const [search, setSearch] = useState(null);
+  const [skillsList, setSkills] = useState({});
+  const [selectData, setSelectData] = useState("");
+  const [inputData, setInputData] = useState(null);
 
   useEffect(() => {
     doctors_list()
@@ -30,21 +31,19 @@ const Home = ({classes}) => {
       .catch(e => console.error(e));
   }, [])
 
-  const searchByName = () => {
-    doctors_list({name: search})
+  const search = () => {
+    doctors_list({name: inputData, skills: selectData})
       .then(payload => setData(payload))
       .catch(e => console.error(e))
   }
 
-  const searchByArea = ({target}) => {
-    doctors_list({skills: target.value})
-      .then(payload => setData(payload))
-      .catch(e => console.error(e))
-  }
-
-  const handleSearch = ({target}) => {
-    setSearch(target.value);
+  const handleInput = ({target}) => {
+    setInputData(target.value);
   } 
+
+  const handleSelect = ({target}) => {
+    setSelectData(target.value);
+  }
 
   console.log(data);
 
@@ -52,14 +51,14 @@ const Home = ({classes}) => {
     <React.Fragment>
       <Grid container spacing={2} justify='center'>
         <Grid item xs={12} md={6}>
-          <TextField className={classes.input} onChange={handleSearch} label='Pesquisar' variant='outlined' />
-          <Button color='primary' variant='contained' onClick={() => searchByName()}>Buscar</Button>
+          <TextField className={classes.input} onChange={handleInput} label='Pesquisar' variant='outlined' />
+          <Button color='primary' variant='contained' onClick={() => search()}>Buscar</Button>
         </Grid>
         <Grid item xs={12} md={6}>
           <FormControl variant="outlined" className={classes.input}>
             <InputLabel id="search-label">Pesquisar por área</InputLabel>
-            <Select onChange={searchByArea} labelId="search-label" id="search-by-skill" label="Pesquisar por área">
-              {map(skills, (item, key) => <MenuItem key={key} value={item}>{item}</MenuItem>)}
+            <Select onChange={handleSelect} labelId="search-label" id="search-by-skill" label="Pesquisar por área">
+              {map(skillsList, (item, key) => <MenuItem key={key} value={item}>{item}</MenuItem>)}
             </Select>
           </FormControl>
         </Grid>
