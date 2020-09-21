@@ -30,7 +30,7 @@ router.post('/doctors/list', (req, res) => {
       if(item_lower.indexOf(name.toLowerCase()) !== -1)
         filtered_list.push(item)
     })
-  } else if(skills && skills.length > 0) {
+  } else if(skills && skills !== "") {
     map(list, (item) => {
       let has_skills = includes(item.skills, skills)
       if(has_skills)
