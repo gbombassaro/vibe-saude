@@ -24,6 +24,7 @@
     }
   },
   "rules": {
+    "react/prop-types": 0,
     "indent": [1, 2, {"SwitchCase": 1}],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
