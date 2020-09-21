@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <Box>
       <Box mb={4}>
-        <Filters onSearch={search} />
+        <Filters callback={search} />
       </Box>
       <Grid container spacing={2} justify='center'>
         <Grid item xs={12} md={6}>

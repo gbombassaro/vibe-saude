@@ -10,7 +10,7 @@ const styles = () => ({
   }
 });
 
-const Filters = ({classes, onSearch}) => {
+const Filters = ({classes, callback}) => {
 
   const [skillsList, setSkills] = useState({});
   const [selectData, setSelectData] = useState("");
@@ -19,7 +19,7 @@ const Filters = ({classes, onSearch}) => {
   useEffect(() => skills_list().then(payload => setSkills(payload)).catch(e => console.error(e)), [])
 
   const handleClick = () => {
-    onSearch({name: inputData, skills: selectData});
+    callback({name: inputData, skills: selectData});
   }
 
   const handleInput = ({target}) => {
