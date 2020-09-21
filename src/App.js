@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Home from './components/Home';
 import Page1 from './components/Page1';
 import PageBooks from './components/PageBooks';
+import PageCreate from './components/PageCreate';
 // import {MuiThemeProvider} from '@material-ui/core/styles'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Switch>
         <Route path='/page1' component={Page1} />
         <Route path='/books' component={PageBooks} />
+        <Route path='/create' component={PageCreate} />
         <Route path='/' component={Home} />
       </Switch>
     </BrowserRouter>
