@@ -52,7 +52,7 @@ const Home = ({classes}) => {
       <Grid container spacing={2} justify='center'>
         <Grid item xs={12} md={6}>
           <TextField className={classes.input} onChange={handleSearch} label='Pesquisar' variant='outlined' />
-          <Button onClick={() => searchDoc()}>Buscar</Button>
+          <Button color='primary' variant='contained' onClick={() => searchDoc()}>Buscar</Button>
         </Grid>
       </Grid>
       <Grid container spacing={2} justify='center'>
